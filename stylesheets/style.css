@@ -1,0 +1,39 @@
+body {
+    background-color: black;
+}
+
+img {
+    border: 1px solid #610A05;
+    border-radius: 4px;
+    padding: 5px;
+    width: 175px;
+    display: block;
+    margin: auto;
+    float: left;
+}
+
+h1, h2 {
+    color: #610A05;
+    font-family: 'Algerian Regular';
+    border: 2px solid #610A05;
+    border-radius: 4px;
+}
+
+h2 {
+    font-size: 30px;
+}
+
+p {
+    color: #610A05;
+    text-align: left;
+    padding: auto;
+}
+
+.bio {
+    font-size: 33px;
+    margin: auto;
+}
+
+.second-heading {
+    margin-top: 75px;
+}
