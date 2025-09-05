@@ -10,6 +10,7 @@ img {
     display: block;
     margin: auto;
     float: left;
+    
 }
 
 h1, h2, h3 {
@@ -33,6 +34,7 @@ p {
 .bio {
     font-size: 33px;
     margin: auto;
+    padding-bottom: 25px;
 }
 
 .second-heading {
