@@ -1,5 +1,5 @@
 body {
-    background-color: black;
+    background-color: #1E0100;
 }
 
 img {
@@ -12,11 +12,12 @@ img {
     float: left;
 }
 
-h1, h2 {
+h1, h2, h3 {
     color: #610A05;
     font-family: 'Algerian Regular';
     border: 2px solid #610A05;
     border-radius: 4px;
+    background-color: #8A221D;
 }
 
 h2 {

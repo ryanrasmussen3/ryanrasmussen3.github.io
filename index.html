@@ -5,19 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ryan R's Portfolio</title>
     <link rel="stylesheet" href="stylesheets/style.css">
-    <link rel="scripts" href="scripts/scripts.js">
+    <script src="scripts/scripts.js"></script>
 </head>
-<body>
-    <h1>Ryan Rasmussens's Javascript Portfolio</h1>
-        <img src="images/pic_self.jpeg" alt="Ryan" float="left";>
-            <p class="bio">Hello there, I am Ryan Rasmussen and this is my portfolio for Web developement.
+<body id="mainPage">
+    <h1 id="heading1">Ryan Rasmussens's Javascript Portfolio</h1>
+        <img src="images/pic_self.jpeg" alt="Ryan">
+            <p id="para" class="bio">Hello there, I am Ryan Rasmussen and this is my portfolio for Web developement.
                 I am a student at Weber State University and I am currently studying computer science.
                 Although I have also spent way too much time inside history books. I do have other hobbies like gaming and
                 building model tanks. Overall experience in computer science is learning how to code primarily in Python, but I
                 am currently learning C++ and more on html, css, and Javascript in which I am excited to learn more about.</p>
 
-    <h2 class="second-heading">Javascript Demonstrations</h2>
-    <p>Work in progress for upcoming Demonstrations</p>
+    <h2 id="heading2">Javascript Demonstrations</h2>
+    <p id="para2">Work in progress for upcoming Demonstrations</p>
+
+    <h3 id="heading3">Color settings</h3>
+    <p id="para3">Current setting: <span id="colors">Default</span></p>
+    <button onclick="lightMode()">Light</button>
+    <button onclick="darkMode()">Dark</button>
+    <button onclick="defultMode()">Defult</button>
 
 </body>
 </html>
