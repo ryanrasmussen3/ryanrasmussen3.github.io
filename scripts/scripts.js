@@ -28,5 +28,5 @@ function defultMode() {
     document.getElementById('para').style = "color= #610A05";
     document.getElementById('para2').style = "color= #610A05";
     document.getElementById('para3').style = "color= #610A05";
-    document.getElementById('colors').innerHTML= "Defult";
+    document.getElementById('colors').innerHTML= "Default";
 }
