@@ -1,0 +1,13 @@
+img {
+    width: 350px;
+}
+
+p {
+    font-size: 20px;
+}
+
+hr {
+    height: 3px;
+    background-color: black;
+    border: none;
+}

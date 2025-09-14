@@ -4,12 +4,42 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shape and Area Calculator</title>
+    <link rel="stylesheet" href="style/style.css">
+    <script src="script/script.js"></script>
 </head>
 <body>
-    <h1>Calculator for the permimiter, area, and volume of a circle and a cylinder!</h1>
+    <h1>Calculator for the perimeter, area, and volume of a circle and a cylinder!</h1>
     <nav>
         <a href="../index.html">Home</a>
     </nav>
+
+    <hr>
+
+    <h2>Enter the radius of the circle.</h2>
+    <img src="images/circle_fixed.png" alt="circle">
+    <!--image made by me-->
+    <p>Radius: <input type="number" size="1" id="radius"></p>
+    <button onclick="circle()">confirm</button>
+
+    <hr>
+
+    <h2>Perimeter & Area</h2>
+    <p>Perimeter: <span id="perimeter"></span></p>
+    <p>Prea: <span id="area"></span></p>
+
+    <hr>
+
+    <h2>Enter the radius and height of the cylinder</h2>
+    <img src="images/cylinder.png" alt="cylinder">
+    <!--image made by me-->
+    <p>Radius: <input type="number" size="1" id="radiusOne"></p>
+    <p>Height: <input type="number" size="1" id="height"></p>
+    <button onclick="cylinder()">confirm</button>
+
+    <hr>
+
+    <h2>Volume of a cylinder</h2>
+    <p>Volume: <span id="volume"></span></p>
     
 </body>
 </html>
