@@ -99,4 +99,6 @@ function resetGame() {
     document.getElementById("c2").innerHTML = "";
     document.getElementById("c3").innerHTML = "";
 
+    document.getElementById("outcome").innerHTML = "";
+
 }
