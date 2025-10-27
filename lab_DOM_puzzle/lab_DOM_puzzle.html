@@ -3,12 +3,142 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Debugger</title>
+    <title>DOM puzzle</title>
+    <style>
+        #puzzle {
+            width: 500px;
+            height: 500px;
+            border: 5px solid black;
+        }
+    </style>
+
 </head>
 <body>
     <nav>
         <a href="../index.html">Home</a>
     </nav>
+    <div id="puzzle"></div>
+
+   <script>
+  const puzzle = document.getElementById("puzzle");
+
+  const title = document.createElement("h1");
+  title.textContent = "DOM Puzzle";
+  document.body.insertBefore(title, puzzle);
+
+
+  puzzle.style.display = "grid";
+  puzzle.style.gridTemplateColumns = "250px 250px";
+  puzzle.style.gridTemplateRows = "250px 250px";
+  // I belive we didn't covner gridTemplate in class but I was struggling to figure
+  // out how to get everything to look right that I found it online. I have a general understanding
+  // that it works similary to a for loop but in CSS, I don't know if using a CSS grid structor is against
+  // insctructions on the lab, I was getting desprate to find a fix
+
+
+  function createButton(letter, color, size) {
+    const button = document.createElement("button");
+    button.textContent = letter;
+    button.style.width = size + "px";
+    button.style.height = size + "px";
+    button.style.backgroundColor = color;
+    button.style.border = "1px solid black";
+    button.style.fontSize = "20px";
+    button.style.color = "white";
+    return button;
+  }
+
+
+  const TopLeft = document.createElement("div");
+  TopLeft.style.width = "250px";
+  TopLeft.style.height = "250px";
+  TopLeft.style.display = "grid";
+  TopLeft.style.gridTemplateColumns = "repeat(2, 125px)";
+  TopLeft.style.gridTemplateRows = "repeat(2, 125px)";
+
+  const A = createButton("A", "#9455F4", 125);
+  const B = createButton("B", "#4A2B74", 125);
+  const C = createButton("C", "#594492", 125);
+  const D = createButton("D", "#854DDC", 125);
+
+  TopLeft.append(A, B, C, D);
+
+
+  const TopRight = document.createElement("div");
+  TopRight.style.width = "250px";
+  TopRight.style.height = "250px";
+  TopRight.style.backgroundColor = "#7338A0";
+
+
+  const BottomLeft = document.createElement("div");
+  BottomLeft.style.width = "250px";
+  BottomLeft.style.height = "250px";
+  BottomLeft.style.backgroundColor = "#7338A0";
+
+
+  const BottomRight = document.createElement("div");
+  BottomRight.style.width = "250px";
+  BottomRight.style.height = "250px";
+  BottomRight.style.display = "grid";
+  BottomRight.style.gridTemplateColumns = "repeat(10, 25px)";
+  BottomRight.style.gridTemplateRows = "repeat(10, 25px)";
+  BottomRight.style.backgroundColor = "#7338A0";
+
+  for (let i = 0; i < 100; i++) {
+    const box = document.createElement("button");
+    box.style.width = "25px";
+    box.style.height = "25px";
+    box.style.backgroundColor = "#C39CFE";
+    box.style.border = "1px solid black";
+    BottomRight.appendChild(box);
+  }
+
+  const boxes = BottomRight.querySelectorAll("button");
+
+  boxes.forEach((box, index) => {
+    box.addEventListener("click", () => {
+        if (box.style.background === "#4A2574") {
+            return;
+        }
+
+        box.style.backgroundColor = "#4A2574";
+
+        if (index > 0 && boxes[index - 1].style.backgroundColor !== "#4A2574") {
+            boxes[index - 1].style.backgroundColor = "#FF9E00";
+        }
+
+        if (index < boxes.length - 1 && boxes[index + 1].style.backgroundColor !== "#4A2574") {
+            boxes[index + 1].style.backgroundColor = "#FF9E00";
+        }
+    });
+  });
+
+
+  puzzle.append(TopLeft, TopRight, BottomLeft, BottomRight);
+
+
+  const description = document.createElement("p");
+  description.textContent = "This is a puzzle created entirely with JavaScript.";
+  document.body.appendChild(description);
+
+
+  const original = "5px solid black";
+  const highlight = "5px solid #FFCC00";
+
+  document.addEventListener("mousemove", (event) => {
+    const isInside = puzzle.contains(event.target);
+
+    if (isInside) {
+        puzzle.style.border = highlight;
+    }
+    else {
+        puzzle.style.border = original;
+    }
+  })
+
+</script>
+
+
     
 </body>
 </html>
