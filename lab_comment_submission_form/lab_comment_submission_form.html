@@ -3,12 +3,138 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>lab_comment_submission_form</title>
 </head>
 <body>
     <nav>
         <a href="../index.html">Home</a>
     </nav>
+    <h1>Comment Submission form</h1>
+    <form id="commentForm" method="post" onsubmit="collectData(event)">
+
+        <label for="name">Name:</label>
+        <input id="name"
+            type="text"
+            name="name"
+            pattern="[A-Za-z\s]+"
+            placeholder="First name"
+            title="Please enter your first name with letters only"
+            required><br><br>
+        
+        <label for="phone">Phone Number:</label>
+        <input id="phone"
+            type="tel"
+            name="phone"
+            pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+            placeholder="###-###-####"
+            title="formate: 555-555-5555"
+            required><br><br>
+
+        <label for="email">Email:</label>
+        <input id="email"
+            type="email"
+            name="email"
+            autocomplete="email"
+            placeholder="example@example.com"
+            required><br><br>
+        
+        <label for="comment">Comment:</label><br>
+        <textarea id="comment"
+            name="comment"
+            placeholder="Enter your comment here..."
+            required></textarea><br><br>
+
+        <label for="username">Username:</label>
+        <input id="username"
+            type="text"
+            name="username"
+            required><br><br>
+        
+        <label for="password">Password:</label>
+        <input id="password"
+            type="password"
+            name="password"
+            minlength="8"
+            maxlength="16"
+            required><br><br>
+
+        <button type="submit">submit</button>
+
+    </form>
+
+            <p id="usernameMessage"></p>
+            <p id="passwordMessage">Password is empty</p>
+
+    <script>
+
+        document.getElementById("username").addEventListener("input", function() {
+            let username = this.value;
+            let message = document.getElementById("usernameMessage");
+            let valid = /^[A-Za-z0-9]+$/;
+
+            if (username.length === 0) 
+                message.textContent = "Username is empty";
+            else if (!valid.test(username))
+                message.textContent = "Only letters, numbers, and underscores allowed"
+            else
+                message.textContent = "Username is valid";
+        });
+
+
+        document.getElementById("password").addEventListener("input", function () {
+            let password = this.value
+            let message = document.getElementById("passwordMessage");
+            const missing = [];
+
+            if (password.length < 8)
+                missing.push("8-character minimum");
+
+            let hasLower = /[a-z]/.test(password);
+            if (!hasLower)
+                missing.push("lower-case letter missing");
+            
+            let hasUpper = /[A-Z]/.test(password);
+            if (!hasUpper)
+                missing.push("upper-case letter missing");
+
+            let hasNumber = /[0-9]/.test(password);
+            if(!hasNumber)
+                missing.push("number missing");
+
+            let hasSpecial = /[!@#$%^&*()]/.test(password)
+            if (!hasSpecial)
+                missing.push("Special character missing");
+
+            message.innerHTML ="password: " + missing;
+            if (missing.length == 0)
+                missing.push("Valid");
+        });
+
+        function sanitize(str) {
+            return str
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;")
+            .replace(/'/g, "&apos;");
+        }
+
+        function collectData(event) {
+            event.preventDefault();
+
+            const form = document.getElementById("commentForm");
+            const sanitizeData = {
+                name: sanitize(form.name.value),
+                phone: sanitize(form.phone.value),
+                email: sanitize(form.email.value),
+                comment: sanitize(form.comment.value),
+                username: sanitize(form.username.value),
+                password: sanitize(form.password.value)
+            };
+            
+        }
+
+    </script>
     
 </body>
 </html>
