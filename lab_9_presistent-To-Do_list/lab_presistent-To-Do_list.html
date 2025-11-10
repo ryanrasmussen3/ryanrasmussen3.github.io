@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List</title>
+    
+</head>
+<body>
+    <h1> To-Do List</h1>
+    <nav>
+        <a href="../index.html">Home</a>
+    </nav>
+
+    <form id="to_do_list">
+        <label for="add_task">Task:</label>
+        <input id="add_task"
+        name="add_task"
+        placeholder="Enter task here"
+        required><br><br>
+
+        <button type="submit">add task</button>
+    </form>
+
+    <ul id="list"></ul>
+
+    <p id="sessionCount"></p>
+
+    <button id="theme">Switch to Dark Mode</button>
+
+    <script>
+
+        const form = document.getElementById('to_do_list');
+        const input = document.getElementById('add_task');
+        const list = document.getElementById('list');
+        const countDisplay = document.getElementById('sessionCount');
+        const themeButton = document.getElementById('theme');
+
+        let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+
+        let sessionCount = Number(sessionStorage.getItem('sessionCount')) || 0;
+
+        countDisplay.textContent = "Tasks added this session: " + sessionCount;
+
+        function setCookie(name, value, days) {
+            const date = new Date();
+            date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+            document.cookie = name + "=" + value + "; expires=" + date.toUTCString() + "; path=/";
+        }
+
+        function getCookie(name) {
+            const cookies = document.cookie.split("; ");
+            for (let i = 0; i < cookies.length; i++) {
+                const parts = cookies[i].split("=");
+                if (parts[0] === name) {
+                    return parts[1];
+                }
+            }
+            return "";
+        }
+
+        
+
+        function render() {
+            list.innerHTML = '';
+            tasks.forEach((task, index) => {
+                const li = document.createElement('li');
+                li.textContent = task;
+
+                const removeButton = document.createElement('button');
+                removeButton.textContent = "Remove Task";
+                removeButton.onclick = () => {
+                    removeTask(index);
+                };
+
+                li.appendChild(removeButton);
+                list.appendChild(li);
+            });
+        }
+
+        function saveTasks() {
+            localStorage.setItem('tasks', JSON.stringify(tasks));
+        }
+
+        function removeTask(index) {
+            tasks.splice(index, 1);
+            saveTasks();
+            render();
+        }
+
+        form.addEventListener('submit', (event) => {
+            event.preventDefault();
+            const newTask = input.value.trim();
+            if (newTask) {
+                tasks.push(newTask);
+                input.value = '';
+                saveTasks();
+                render();
+
+                sessionCount++;
+                sessionStorage.setItem('sessionCount', sessionCount);
+                countDisplay.textContent = "Tasks added this session: " + sessionCount;
+            }
+        });
+
+        render();
+
+        function applyTheme(theme) {
+            if (theme === 'dark') {
+                document.body.style.backgroundColor = "black";
+                document.body.style.color = "white";
+                themeButton.textContent = "Switch to Light Mode";
+            }
+            else {
+                document.body.style.backgroundColor = "white";
+                document.body.style.color = "black";
+                themeButton.textContent = "Switch to Light Mode";
+            }
+        }
+
+        let currentTheme = getCookie("theme") || "light";
+        applyTheme(currentTheme);
+
+        themeButton.addEventListener("click", function () {
+            currentTheme = (currentTheme === "light") ? "dark" : "light";
+            applyTheme(currentTheme);
+            setCookie("theme", currentTheme, 1);
+        })
+
+
+    </script>
+
+</body>
+</html>
