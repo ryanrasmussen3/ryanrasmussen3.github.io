@@ -3,9 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Whack-a-Mole</title>
+    <style>
+        tr{
+            height: 100px;
+            width: 100px;
+            border: 1px solid black;
+            border-radius: 50px;
+            background-color: green;
+        }
+        td {
+            height: 100px;
+            width: 100px;
+            border: 1px solid black;
+            border-radius: 50px;
+            background-color: brown;
+        }
+    </style>
 </head>
 <body>
+    <nav>
+        <a href="../index.html">Home</a>
+    </nav>
+
+    <div id="gameBoard"></div>
+
+    <script>
+    
+    function startUp(){
+        const table = document.createElement('table');
+        document.getElementById('gameBoard').appendChild(table);
+
+        for(let row = 0; row < 3; row++) {
+            const tr = document.createElement('tr');
+            for(let col = 0; col < 3; col++){
+                const td = document.createElement('td');
+                td.setAttribute('onclick', 'changeLights(this)');
+                tr.appendChild(td);
+            }
+            table.appendChild(tr);
+        }
+    }
+
+
+
+    startUp();
+    </script>
     
 </body>
 </html>
