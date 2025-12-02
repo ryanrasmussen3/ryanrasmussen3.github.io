@@ -27,6 +27,7 @@
   <div id="timeDisplay">00:00</div>
   <p id="score">Score: 0</p>
   <div id="gameBoard"></div>
+  <button id="endBtn">End Game</button>
   <p id="displayScore"></p>
 
   <script>
@@ -109,6 +110,8 @@
           endGame();
         }
       }, 1000);
+
+      document.getElementById('endBtn').addEventListener('click', endGame);
     }
 
     function updateDisplay() {
@@ -162,6 +165,7 @@
       // visually clear any mole
       document.querySelectorAll('#gameBoard td').forEach(t => t.style.backgroundColor = 'green');
     }
+
 
     // wire the start button
     document.getElementById('startBtn').addEventListener('click', startGame);
